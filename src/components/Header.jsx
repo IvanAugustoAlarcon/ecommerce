@@ -1,7 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+// import useSearch from '../hooks/useSearch'
+import { useSearchContext } from '../context/SearchContext'
 
 const Header = () => {
+  // const { input, handleInputChange } = useSearch()
+  const context = useSearchContext()
+
+  const handleSearch = (e) => {
+    context.setSearch(e.target.value)
+  }
+  // console.log('Viene del hook', input)
   return (
     <>
       <div>
@@ -24,7 +33,7 @@ const Header = () => {
                 </li>
               </ul>
               <form className='d-flex' role='search'>
-                <input className='form-control me-2' type='search' placeholder='Search' aria-label='Search' />
+                <input className='form-control me-2' type='search' placeholder='Search' aria-label='Search' onChange={handleSearch} />  {/* onChange={handleInputChange} este handle viene del hook */}
               </form>
             </div>
           </div>
@@ -33,5 +42,5 @@ const Header = () => {
     </>
   )
 }
-// onChange={() => { handleSearch(event.target.value) }}
+
 export default Header
