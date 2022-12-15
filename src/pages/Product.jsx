@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { getShopItemsById } from '../services/ApiServices'
+import { AuthContext } from '@/context/AuthContext'
 
 const Product = () => {
   const { id } = useParams()
   const [product, setProduct] = useState([])
   const [loading, setLoading] = useState(false)
+  const { isAuth } = useContext(AuthContext)
 
   useEffect(() => {
     setLoading(true)
@@ -40,8 +42,8 @@ const Product = () => {
             $ {product.price}
           </h3>
           <p className='lead'>{product.description}</p>
-          <button className='btn btn-outline-dark px-4 py-2'>
-            Add to Cart
+          <button className='btn btn-outline-dark px-4 py-2' disabled={!isAuth}>
+            Add to Cart {!isAuth ? <p>Login please</p> : <></>}
           </button>
           <button className='btn btn-dark ms-2 px-3 py-2'>
             Go to Cart
