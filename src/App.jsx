@@ -2,15 +2,18 @@ import './App.css'
 import Header from './components/Header'
 import RoutesIndex from './routes'
 import { SearchProvider } from './context/SearchContext'
+import { AuthProvider } from './context/AuthContext'
 
 function App () {
   return (
+
     <SearchProvider>
-      <div className='App'>
+      <AuthProvider>
         <Header />
         <RoutesIndex />
-      </div>
+      </AuthProvider>
     </SearchProvider>
+
   )
 }
 
