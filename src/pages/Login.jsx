@@ -16,7 +16,7 @@ const Login = () => {
       if (result.status === 200) {
         const token = result.data.token
         loginUser(token)
-        navigate('/dashboard')
+        navigate('/')
       }
     } catch (error) {
       console.log('Ocurrio un error en Login: ' + error.message)
